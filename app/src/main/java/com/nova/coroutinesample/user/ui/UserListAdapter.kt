@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nova.coroutinesample.R
-import com.nova.coroutinesample.UserListDiffCallback
 import com.nova.coroutinesample.databinding.UserItemBinding
 import com.nova.coroutinesample.user.model.User
 

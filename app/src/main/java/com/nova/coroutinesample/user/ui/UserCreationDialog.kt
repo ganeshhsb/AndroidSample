@@ -24,7 +24,7 @@ class UserCreationDialog : DialogFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        listener = activity as? UserCreationDialogListener
+        listener = parentFragment as? UserCreationDialogListener
     }
 
     override fun onCreateView(

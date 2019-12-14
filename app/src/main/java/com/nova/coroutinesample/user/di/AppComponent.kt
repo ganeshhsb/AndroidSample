@@ -3,7 +3,7 @@ package com.nova.coroutinesample.user.di
 import android.app.Application
 import com.nova.coroutinesample.AppApplication
 import com.nova.coroutinesample.AppDatabase
-import com.nova.coroutinesample.user.viewmodel.MainActivityModel
+import com.nova.coroutinesample.user.viewmodel.UserListModel
 import com.nova.coroutinesample.user.db.UserDao
 import com.nova.coroutinesample.user.repo.UserRepo
 import dagger.Component
@@ -15,7 +15,7 @@ interface AppComponent {
     fun getApplication(): Application
     fun getDatabase(): AppDatabase
     fun getUserDao(): UserDao
-    fun inject(model: MainActivityModel)
+    fun inject(model: UserListModel)
     fun inject(repo: UserRepo)
 }
 
