@@ -1,4 +1,4 @@
-package com.nova.coroutinesample
+package com.nova.coroutinesample.user.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

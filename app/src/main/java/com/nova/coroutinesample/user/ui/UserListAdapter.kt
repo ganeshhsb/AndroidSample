@@ -1,14 +1,14 @@
-package com.nova.coroutinesample
+package com.nova.coroutinesample.user.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.nova.coroutinesample.R
+import com.nova.coroutinesample.UserListDiffCallback
 import com.nova.coroutinesample.databinding.UserItemBinding
-import android.R.attr.data
-import android.text.method.TextKeyListener.clear
+import com.nova.coroutinesample.user.model.User
 
 class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
     interface UserItemClickListener {
@@ -48,7 +48,12 @@ class UserListAdapter : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
     }
 
     fun onNewData(newData: MutableList<User>) {
-        val diffResult = DiffUtil.calculateDiff(UserListDiffCallback(userList!!, newData))
+        val diffResult = DiffUtil.calculateDiff(
+            UserListDiffCallback(
+                userList!!,
+                newData
+            )
+        )
         this.userList?.clear()
         this.userList?.addAll(newData)
         diffResult.dispatchUpdatesTo(this)

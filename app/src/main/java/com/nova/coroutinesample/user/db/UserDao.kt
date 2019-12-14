@@ -1,7 +1,8 @@
-package com.nova.coroutinesample
+package com.nova.coroutinesample.user.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.nova.coroutinesample.user.model.User
 
 @Dao
 interface UserDao {

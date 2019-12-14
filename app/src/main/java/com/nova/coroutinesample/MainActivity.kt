@@ -5,14 +5,15 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DiffUtil
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import android.R.id
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.nova.coroutinesample.user.viewmodel.MainActivityModel
+import com.nova.coroutinesample.user.model.User
+import com.nova.coroutinesample.user.ui.UserCreationDialog
+import com.nova.coroutinesample.user.ui.UserListAdapter
 import kotlinx.coroutines.*
 import java.util.concurrent.Executors
 

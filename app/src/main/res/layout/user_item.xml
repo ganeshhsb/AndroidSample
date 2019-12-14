@@ -5,11 +5,11 @@
 
         <variable
             name="user"
-            type="com.nova.coroutinesample.User" />
+            type="com.nova.coroutinesample.user.model.User" />
 
         <variable
             name="itemClickListener"
-            type="com.nova.coroutinesample.UserListAdapter.UserItemClickListener" />
+            type="com.nova.coroutinesample.user.ui.UserListAdapter.UserItemClickListener" />
     </data>
 
     <LinearLayout
@@ -28,8 +28,8 @@
             android:id="@+id/user_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
             android:layout_marginLeft="100dp"
-            android:text="@{user.address}"
-            android:layout_marginStart="100dp" />
+            android:text="@{user.address}" />
     </LinearLayout>
 </layout>

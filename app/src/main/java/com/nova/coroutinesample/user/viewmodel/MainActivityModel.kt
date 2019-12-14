@@ -1,8 +1,12 @@
-package com.nova.coroutinesample
+package com.nova.coroutinesample.user.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.nova.coroutinesample.user.di.AppModule
+import com.nova.coroutinesample.user.di.DaggerAppComponent
+import com.nova.coroutinesample.user.repo.UserRepo
+import com.nova.coroutinesample.user.model.User
 import javax.inject.Inject
 
 class MainActivityModel : ViewModel() {

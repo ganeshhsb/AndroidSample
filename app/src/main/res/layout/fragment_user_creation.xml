@@ -5,7 +5,7 @@
 
         <variable
             name="user"
-            type="com.nova.coroutinesample.User" />
+            type="com.nova.coroutinesample.user.model.User" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

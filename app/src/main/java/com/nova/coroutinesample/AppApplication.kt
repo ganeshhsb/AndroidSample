@@ -8,7 +8,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 class AppApplication : Application() {
     companion object {
         private lateinit var appApplication: Application
-        fun getApplication() = appApplication
+        fun getApplication() =
+            appApplication
     }
 
     lateinit var database: AppDatabase

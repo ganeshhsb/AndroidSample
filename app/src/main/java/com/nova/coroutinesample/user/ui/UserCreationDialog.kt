@@ -1,4 +1,4 @@
-package com.nova.coroutinesample
+package com.nova.coroutinesample.user.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import com.nova.coroutinesample.R
+import com.nova.coroutinesample.user.model.User
 import com.nova.coroutinesample.databinding.FragmentUserCreationBinding
 import kotlinx.android.synthetic.main.fragment_user_creation.*
 
@@ -16,7 +18,8 @@ class UserCreationDialog : DialogFragment() {
     }
 
     private var listener: UserCreationDialogListener? = null
-    var user: User = User("", "")
+    var user: User =
+        User("", "")
     private val emptyUser = User("", "")
 
     override fun onAttach(context: Context) {
@@ -30,7 +33,10 @@ class UserCreationDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding: FragmentUserCreationBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_user_creation, container, false)
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_user_creation, container, false
+            )
         binding.user = user
         return binding.root
     }
@@ -42,6 +48,7 @@ class UserCreationDialog : DialogFragment() {
 
     private fun initViews() {
         fragment_toolbar.inflateMenu(R.menu.menu_user_creation_fragment)
+        fragment_toolbar.title = getString(R.string.add_user)
         fragment_toolbar.navigationIcon = resources.getDrawable(R.drawable.ic_close_24px)
         fragment_toolbar.setNavigationOnClickListener {
             listener?.onUserCreation(null)
