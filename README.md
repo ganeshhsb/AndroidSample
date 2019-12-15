@@ -1,9 +1,13 @@
 # AndroidSample
+```
 Sample Android application with following libraries integrated
--ViewModel
--LiveData
--Room
--DataBinding
--RecyclerView
--Coroutines
+Master branch contains basic project and seperate branches create to integrate specific library integration
+-ViewModel 
+-LiveData 
+-Room 
+-DataBinding 
+-RecyclerView 
+-Coroutines 
 -DiffUtil
+-Koin
+```
