@@ -6,24 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.nova.coroutinesample.databinding.FragmentUserListBinding
 import com.nova.coroutinesample.user.model.User
 import com.nova.coroutinesample.user.viewmodel.UserListModel
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.fragment_user_list.*
-import java.util.concurrent.Executors
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
+import org.koin.android.viewmodel.ext.android.viewModel
+import java.util.concurrent.Executors
+import kotlin.time.ExperimentalTime
+import kotlin.time.measureTime
 
 class UserListFragment : Fragment(), UserCreationDialog.UserCreationDialogListener,
     UserListAdapter.UserItemClickListener {
     private lateinit var activityScope: CoroutineDispatcher
-    private lateinit var userListModel: UserListModel
+    val userListModel: UserListModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,7 +39,6 @@ class UserListFragment : Fragment(), UserCreationDialog.UserCreationDialogListen
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         activityScope = Executors.newCachedThreadPool().asCoroutineDispatcher()
-        userListModel = ViewModelProviders.of(this).get(UserListModel::class.java)
 
         fab.setOnClickListener { view ->
             val fragment = UserCreationDialog()
@@ -79,6 +80,7 @@ class UserListFragment : Fragment(), UserCreationDialog.UserCreationDialogListen
         fragment.show(childFragmentManager, "UserCreationDialog")
     }
 
+    @ExperimentalTime
     private fun addRecyclerViewSwipeListener() {
         val simpleItemTouchCallback = object : ItemTouchHelper.SimpleCallback(
             /*ItemTouchHelper.UP or ItemTouchHelper.DOWN*/0,
@@ -104,7 +106,11 @@ class UserListFragment : Fragment(), UserCreationDialog.UserCreationDialogListen
 
                     } else if (direction == ItemTouchHelper.RIGHT) {
                         // DO Action for Right
-                        GlobalScope.launch(activityScope) { userListModel.delete(user) }
+                        val context = Dispatchers.Main + Job()
+                        val scope = CoroutineScope(context)
+                        measureTime {
+                            scope.launch(CoroutineName("")) { userListModel.delete(user) }
+                        }
                     }
                 }
             }

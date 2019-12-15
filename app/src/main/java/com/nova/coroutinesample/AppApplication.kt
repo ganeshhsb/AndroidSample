@@ -4,6 +4,11 @@ import android.app.Application
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.nova.coroutinesample.user.di.activityModules
+import com.nova.coroutinesample.user.di.appModules
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
+
 
 class AppApplication : Application() {
     companion object {
@@ -19,6 +24,11 @@ class AppApplication : Application() {
         database = Room.databaseBuilder(this, AppDatabase::class.java, "AppDatabase")
             .addMigrations(MIGRATION_1_2)
             .build()
+
+        startKoin {
+            androidContext(this@AppApplication)
+            modules(appModules + activityModules)
+        }
     }
 }
 

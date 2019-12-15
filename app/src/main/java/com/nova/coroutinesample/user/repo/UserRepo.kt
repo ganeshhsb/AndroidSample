@@ -1,23 +1,14 @@
 package com.nova.coroutinesample.user.repo
 
 import androidx.lifecycle.LiveData
-import com.nova.coroutinesample.user.model.User
 import com.nova.coroutinesample.user.db.UserDao
-import com.nova.coroutinesample.user.di.AppModule
-import com.nova.coroutinesample.user.di.DaggerAppComponent
-import javax.inject.Inject
+import com.nova.coroutinesample.user.model.User
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class UserRepo @Inject constructor() {
+class UserRepo : KoinComponent {
 
-    @Inject
-    lateinit var userDao: UserDao
-
-    init {
-        DaggerAppComponent.builder()
-            .appModule(AppModule())
-            .build()
-            .inject(this)
-    }
+    val userDao: UserDao by inject()
 
     fun getUser(): LiveData<MutableList<User>> {
         return userDao.getUsers()

@@ -4,26 +4,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nova.coroutinesample.common.SingleLiveEvent
-import com.nova.coroutinesample.user.di.AppModule
-import com.nova.coroutinesample.user.di.DaggerAppComponent
-import com.nova.coroutinesample.user.repo.UserRepo
 import com.nova.coroutinesample.user.model.User
-import javax.inject.Inject
+import com.nova.coroutinesample.user.repo.UserRepo
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class UserListModel : ViewModel() {
+class UserListModel : ViewModel(), KoinComponent {
     val userList: MutableLiveData<User> = MutableLiveData()
     val singleEvent: SingleLiveEvent<Boolean> = SingleLiveEvent()
 
-    @Inject
-    lateinit var userRepo: UserRepo
-
-    init {
-        DaggerAppComponent.builder()
-            .appModule(AppModule())
-            .build()
-            .inject(this)
-        singleEvent.postValue(true)
-    }
+    private val userRepo: UserRepo by inject()
 
     fun getUsers(): LiveData<MutableList<User>> {
 
